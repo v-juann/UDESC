@@ -14,11 +14,11 @@ float fat(float n){
 }
 
 //função que calcula a potência
-float pow(float n, float e){
+float power(float n, float e){
     if(e == 0){
         return 1;
     }else{
-        return n * pow(n, e-1);
+        return n * power(n, e-1);
     }
 }
 
@@ -27,7 +27,7 @@ float pow(float n, float e){
         if(y == 0){
             return soma;
         }else{
-            soma += (pow(x, y)/fat(y));
+            soma += (power(x, y)/fat(y));
             return soma_taylor(x, y-1);
         }
     }
@@ -35,7 +35,7 @@ float pow(float n, float e){
 //fução iterativa
     float soma_taylor2(float x, float y){
         for(float n = x; n < 0; n--){
-            soma += (pow(x, n) / (fat (n)));
+            soma += (power(x, n) / (fat (n)));
         }
     return soma;
     }

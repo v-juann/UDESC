@@ -2,10 +2,10 @@
 somatório dos termos. O número de termos da série (k) é definido pelo usuário.*/
 #include<stdio.h>
 
-int soma = 0;
+float soma = 0;
 
 //função recursiva
-    int soma_inteiros(int x){
+    float soma_inteiros(float x){
         if(x == 0){
             return soma;
         }else{
@@ -15,7 +15,7 @@ int soma = 0;
     }
     
 //fução iterativa
-    int soma_inteiros2(int x){
+    float soma_inteiros2(float x){
         for(int n = x; n < 0; n--){
             soma += (1/n);
         }
@@ -23,13 +23,13 @@ int soma = 0;
     }
 
 int main(){
-    int x;
+    float x;
 
     printf("Digite o número: \n");
-    scanf("%d",  &x);
+    scanf("%f",  &x);
 
-    printf("%d\n", soma_inteiros(x));
-    printf("%d\n", soma_inteiros2(x));
+    printf("%f\n", soma_inteiros(x));
+    printf("%f\n", soma_inteiros2(x));
 
     return 0;
  }
