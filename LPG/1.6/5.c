@@ -8,7 +8,61 @@ que ele digite novamente.
 
 int main(){
 
-    int meses[12] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-    
+    int meses[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
+    int dias;
+
+    printf("Digite o número de dias passado do ano: \n");
+    scanf("%d", &dias);
+
+    if(dias < 0 || dias > 365){
+        printf("Quantidade inválida!");
+    } else{        
+        for(int i = 0; i < 12; i++){
+            if(dias > meses[i] && dias < meses[i + 1]){
+                printf("Mês: %d - ", i + 1);
+                    switch(i + 1){
+                        case 1:
+                            printf("Janeiro");
+                            break;
+                        case 2:
+                            printf("Fevereiro");
+                            break;
+                        case 3:
+                            printf("Março");
+                            break;
+                        case 4:
+                            printf("Abril");
+                            break;
+                        case 5:
+                            printf("Maio");
+                            break;
+                        case 6:
+                            printf("Junho");
+                            break;
+                        case 7:
+                            printf("Julho");
+                            break;
+                        case 8:
+                            printf("Agosto");
+                            break;
+                        case 9:
+                            printf("Setembro");
+                            break;
+                        case 10:
+                            printf("Outubro");
+                            break;
+                        case 11:
+                            printf("Novembro");
+                            break;
+                        case 12:
+                            printf("Dezembro");
+                            break;
+                        default:
+                            printf("Mês inválido!!!");
+                            break;
+                    }
+            }
+        }
+    }
     return 0;
 }
