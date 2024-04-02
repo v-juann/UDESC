@@ -15,13 +15,14 @@ float power(float n, float e){
         if(x == 0){
             return 0;
         }
-            return soma_leibniz(x-1) += (((power(-1, x+1)) * 4 )/ (x * 2 - 1));        
+            return soma_leibniz(x-1) + (((power(-1, x + 1)) * 4 ) / (x * 2 - 1));        
     }
     
-//fução iterativa
+//função iterativa
     float soma_leibniz2(float x){
-        for(int n = x; n < 0; n--){
-            float soma += (((power(-1, n + 1)) * 4 ) / (x * 2 - 1));
+        float soma = 0;
+        for(int n = x; n > 0; n--){
+            soma += (((power(-1, n + 1)) * 4 ) / (n * 2 - 1));
         }
     return soma;
     }
