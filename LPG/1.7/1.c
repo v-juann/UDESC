@@ -5,14 +5,14 @@ int vetores_iguais(float a[], float b[], int n);*/
 #include<stdio.h>
 
 int vetores_iguais(float a[], float b[], int n){
-    if(a != b){
-        return 0;
-    }
     if(n == 0){
         return 1;
     }
-    return vetores_iguais(a, b, n-1);
-};
+    if(a[n - 1] != b[n - 1]){
+        return 0;
+    }    
+    return vetores_iguais(a, b, n - 1);
+}
 
 int main(){
     int n;
@@ -24,11 +24,11 @@ int main(){
 
     for(int x = 0; x < n; x++){
         printf("Digite o elemento %d do primeiro vetor: \n", x + 1);
-        scanf("%f", a[x]);
+        scanf("%f", &a[x]);
     }
     for(int x = 0; x < n; x++){
         printf("Digite o elemento %d do segundo vetor: \n", x + 1);
-        scanf("%f", b[x]);
+        scanf("%f", &b[x]);
     }
 
     printf("%d", vetores_iguais(a, b, n));
