@@ -1,65 +1,60 @@
-/*Escreva um programa em C que crie duas matrizes de inteiros A[4][5] e B[5][3].
-Gere valores para as 2 matrizes e crie uma nova matriz C[4][3] com a
-multiplicação das duas primeiras. Tente criar funções*/
+/*Dada uma matriz original qualquer, gere a matriz transposta desta original.
+A dimensão da matriz original (número de linhas e número de colunas) deve ser indicada pelo
+usuário. Ambos devem maiores que 1. Os valores da matriz original podem ser gerados
+randomicamente numa função. A matriz transposta deve ser uma outra matriz (não sobrescrever os
+valores da matriz original) e pode ser gerada em uma função. Os valores de ambas as matrizes devem
+ser mostrados na tela. Recomenda-se usar uma mesma função com VLA.*/
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-void preenche_matrizA(int mat[][5], int x, int y);
-void preenche_matrizB(int mat[][3], int x, int y);
+void preenche_matriz(int x, int y, int mat[x][y]);
+void mostra_matriz(int x,int y,int mat[x][y]);
+void gera_matriz_transposta(int x,int y,int mat[x][y],int transp[y][x]);
+
 
 int main() {
   int i, j, k;
   int soma = 0;
-  int matA[4][5];
-  int matB[5][3];
-  int matC[4][3];
+
+  printf("Digite o numero de linhas e colunas da primeira matriz: \n");
+  scanf("%d%d", &i, &j);
+
+  int mat[i][j];
+  int matT[j][i];
+
   srand(time(0));
 
-  preenche_matrizA(matA, 4, 5);
-  preenche_matrizB(matB, 5, 3);
+  preenche_matriz(i, j, mat);
 
-  for (i = 0; i < 4; i++) {
-    for (j = 0; j < 3; j++) {
-      soma = 0;
-      for (k = 0; k < 5; k++) {
-        soma += matA[i][k] * matB[k][j];
-      }
-      matC[i][j] = soma;
-    }
-  }
+  mostra_matriz(i, j, mat);
 
-  for (i = 0; i < 4; i++) {
-    for (j = 0; j < 3; j++) {
-      if (j == 0) {
-        printf("[ %i", matC[i][j]);
-      } else {
-        if (j == 2) {
-          printf(", %i ]\n", matC[i][j]);
-        } else {
-          printf(", %i", matC[i][j]);
-        }
-      }
-    }
-  }
+  gera_matriz_transposta(i, j, mat, matT);
+  printf("\nTransposta:\n");
+  mostra_matriz(j, i, matT);
 
   return 0;
 }
 
-void preenche_matrizA(int mat[][5], int x, int y) {
-  int i, j;
-  for (i = 0; i < x; i++) {
-    for (j = 0; j < y; j++) {
+void preenche_matriz(int x, int y, int mat[x][y]) {
+  for (int i = 0; i < x; i++) {
+    for (int j = 0; j < y; j++) {
       mat[i][j] = rand() % 10;
     }
   }
 }
-
-void preenche_matrizB(int mat[][3], int x, int y) {
-  int i, j;
-  for (i = 0; i < x; i++) {
-    for (j = 0; j < y; j++) {
-      mat[i][j] = rand() % 10;
+void mostra_matriz(int x, int y, int mat[x][y]){
+  for(int i = 0; i < x; i++){
+    for(int j = 0; j < y; j++){
+      printf(" %d ", mat[i][j]);
+    }
+    printf("\n");
+  }
+}
+void gera_matriz_transposta(int x,int y,int mat[x][y],int transp[y][x]){
+    for (int i = 0; i < x; i++) {
+        for (int j = 0; j < y; j++) {
+            transp[j][i] = mat[i][j];
     }
   }
 }
