@@ -7,6 +7,7 @@ com VLA) para fazer a ordenação dos valores do vetor. Para isso, sugere-se o u
 adicional indicando a ordem (‘c’=crescente e ‘d’=decrescente). Ao final, mostre os valores do vetor
 após a ordenação.*/
 #include<stdio.h>
+#include<stdlib.h>
 #include<time.h>
 
 void preenche_vetor_rand(int t,int vet[t]);
@@ -27,8 +28,10 @@ int main(){
     mostra_vetor(t, vet);
 
     printf("\nOrdenar por:\nC - Crescente\nD - Decrescente\n");
-    scanf("%c", &ordem);
+    scanf(" %c", &ordem);
+
     ordena_vetor(t, vet, ordem);
+    mostra_vetor(t, vet);
 
     return 0;
 }
@@ -39,17 +42,35 @@ void preenche_vetor_rand(int t,int vet[t]){
 }
 void mostra_vetor(int t,int vet[t]){
     for(int x = 0; x < t; x++){
-        printf(" %d ", vet[x]);
+        printf("%d ", vet[x]);
     }
 }
 void ordena_vetor(int t,int vet[t],char ordem){
-    if(ordem == "c"){
-        int aux = 0;
-        for(int x = 1; x < t; x++){
-            vet[x] > vet[x - 1] ? aux = vet[x];
+    if(ordem == 'c'){
+        for(int z = 0; z < t - 1; z++){
+            int temp = z;
+            for(int x = z + 1; x < t; x++){
+                if(vet[x] < vet[temp]){
+                    temp = x;
+                }        
+            }
+            int aux = vet[z];
+            vet[z] = vet[temp];
+            vet[temp] = aux;
         }
-    }
-    if(ordem == "d"){
-
+    }else if(ordem == 'd'){
+        for(int z = 0; z < t - 1; z++){
+            int temp = z;
+            for(int x = z + 1; x < t; x++){
+                if(vet[x] > vet[temp]){
+                    temp = x;
+                }        
+            }
+            int aux = vet[z];
+            vet[z] = vet[temp];
+            vet[temp] = aux;
+        }
+    }else{
+        printf("Opção inválida.\n");
     }
 }
