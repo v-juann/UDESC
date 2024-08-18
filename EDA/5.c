@@ -8,12 +8,18 @@ técnica RLE.
 
 int main(){
     char string[10];
+    int cont = 1;
 
     printf("Digite uma cadeia de até 10 caracteres:\n");
-    scanf("%s",string);
-
-    for(int i = 1; i < strlen(string); i++){
-        if(string[i] == string[i])
+    scanf(" %s",string);
+    
+    for(int i = 1; i <= strlen(string); i++){
+        if(string[i] == string[i-1]){
+            cont++;
+        } else{         
+            printf("%d%c", cont, string[i-1]);            
+            cont = 1;
+        }
     }
     return 0;
 }
